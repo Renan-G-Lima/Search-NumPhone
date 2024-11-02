@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <style>
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; right: 0; left: 0; }
+    </style>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+</head>
+<body>
+    <!-- O mapa começa aqui -->
+    <div id="map"></div>
+
+    <!-- Script para configurar o mapa -->
+    <script>
+        // Inicializando o mapa
+        var map = L.map('map').setView([10.5002504, -66.863639], 9);
+
+        // Camada de Mapa Base
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Função para criar marcadores personalizados
+        function createMarker(lat, lng, popupContent, color = "blue") {
+            var marker = L.circle([lat, lng], {
+                color: color,
+                fillColor: color,
+                fillOpacity: 0.2,
+                radius: 9000
+            }).addTo(map);
+
+            marker.bindPopup(popupContent);
+        }
+
+        // Função para obter coordenadas do back-end
+        function getCoordinates(address) {
+            fetch(`/api/passkey/geocode?address=${encodeURIComponent(address)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.Latitude && data.Longitude) {
+                        // Defina o centro do mapa para as coordenadas obtidas
+                        map.setView([data.Latitude, data.Longitude], 12);
+                        // Crie um marcador nas coordenadas
+                        createMarker(data.Latitude, data.Longitude, `Ubicação: ${address}`);
+                    } else {
+                        console.error("Coordenadas não encontradas.");
+                    }
+                })
+                .catch(error => console.error("Erro ao obter coordenadas:", error));
+        }
+
+        // Chamando a função com um endereço de exemplo
+        getCoordinates("82 Clerkenwell Road, London");
+
+        // Adicionando marcadores no mapa com informações específicas
+        createMarker(10.5002504, -66.863639, "Country: Venezuela", "#3388ff");
+        createMarker(10.5002504, -66.863639, "Ubication zone 1", "#3186cc");
+        createMarker(10.5002504, -66.863639, "Ubication antena", "#86cc31");
+        createMarker(10.9661826, -63.8241339, "Ubication antena", "#86cc31");
+        createMarker(10.5015261, -66.8631149, "Ubication antena", "#86cc31");
+        createMarker(10.0653971, -68.1178381, "Ubication antena", "#86cc31");
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "L4XUop98lK0=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\renan\\Desktop\\teste\\teste.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\renan\\.nuget\\packages\\libphonenumber-csharp\\8.13.48\\libphonenumber-csharp.8.13.48.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\opencage.geocode.dotnetstandard\\1.6.0\\opencage.geocode.dotnetstandard.1.6.0.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\servicestack.text.core\\6.10.0\\servicestack.text.core.6.10.0.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\renan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
